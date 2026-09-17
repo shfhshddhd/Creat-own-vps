@@ -40,7 +40,7 @@ jobs:
           curl -fsSL https://tailscale.com/install.sh | sh
           tailscale version
 
-                - name: Install and Configure SSH
+      - name: Install and Configure SSH
         env:
           VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
         run: |
