@@ -60,4 +60,7 @@ jobs:
           echo "===== SSH STATUS ====="
           sudo systemctl status ssh --no-pager
 
+      - name: Keep VPS Alive
+        run: |
+          sleep 3600
     
