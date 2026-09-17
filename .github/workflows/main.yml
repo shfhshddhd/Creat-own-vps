@@ -1,0 +1,36 @@
+name: VPS Infrastructure Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check VPS Resources
+        run: |
+          echo "===== VPS INFORMATION ====="
+          echo "Hostname:"
+          hostname
+
+          echo
+          echo "CPU:"
+          nproc
+
+          echo
+          echo "RAM:"
+          free -h
+
+          echo
+          echo "Disk:"
+          df -h /
+
+          echo
+          echo "Ubuntu:"
+          lsb_release -a
+
+          echo
+          echo "Public IP:"
+          curl -4 https://api.ipify.org
+          echo
