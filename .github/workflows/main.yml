@@ -40,6 +40,12 @@ jobs:
           curl -fsSL https://tailscale.com/install.sh | sh
           tailscale version
 
+      - name: Connect to Tailscale
+        run: |
+          sudo tailscale up --auth-key=${{ secrets.TS_AUTHKEY }}
+          tailscale status
+          tailscale ip -4
+
       - name: Install and Configure SSH
         env:
           VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
