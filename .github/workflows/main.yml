@@ -40,6 +40,20 @@ jobs:
           curl -fsSL https://tailscale.com/install.sh | sh
           tailscale version
 
+                - name: Install and Configure SSH
+        env:
+          VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-server
+          sudo useradd -m -s /bin/bash vpsadmin || true
+          echo "vpsadmin:$VPS_PASSWORD" | sudo chpasswd
+          sudo usermod -aG sudo vpsadmin
+          sudo systemctl enable --now ssh
+
+          echo "===== SSH STATUS ====="
+          sudo systemctl status ssh --no-pager
+
       - name: Connect to Tailscale
         run: |
           sudo tailscale up --auth-key=${{ secrets.TS_AUTHKEY }}
