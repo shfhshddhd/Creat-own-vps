@@ -34,6 +34,7 @@ jobs:
           echo "Public IP:"
           curl -4 https://api.ipify.org
           echo
+          
       - name: Install Tailscale
         run: |
           curl -fsSL https://tailscale.com/install.sh | sh
