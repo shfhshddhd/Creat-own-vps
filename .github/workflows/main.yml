@@ -60,8 +60,4 @@ jobs:
           echo "===== SSH STATUS ====="
           sudo systemctl status ssh --no-pager
 
-      - name: Connect to Tailscale
-        run: |
-          sudo tailscale up --auth-key=${{ secrets.TS_AUTHKEY }}
-          tailscale status
-          tailscale ip -4
+    
